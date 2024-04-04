@@ -1,7 +1,7 @@
 export default function DashboardIndex() {
     return (
         <>
-            <div className="lead">Dashboard</div>
+            <div className="lead">Dashboard gadis</div>
             
 
         </>
