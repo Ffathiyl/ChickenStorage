@@ -1,0 +1,1 @@
+export const ROOT_LINK = "http://localhost:5174";
