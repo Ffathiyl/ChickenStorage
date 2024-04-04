@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import logo from "../../assets/Los_Pollos_Hermanos_logo.png";
 import { ROOT_LINK } from "../../util/Constants";
-
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.esm'
 
 const arrMenu = [
   { head: "Dashboard", headkey: "dashboard", link: ROOT_LINK + "/", sub: [] },
@@ -28,6 +29,7 @@ export default function Header() {
 
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
+    console.log(menu);
     setIsOpen(false); // Close dropdown when menu is clicked
   };
 
