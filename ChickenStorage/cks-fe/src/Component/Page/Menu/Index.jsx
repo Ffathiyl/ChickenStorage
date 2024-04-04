@@ -2,6 +2,10 @@ import burgerImage from "../../../assets/BurgerReact.jpg";
 import pepsiImage from "../../../assets/Pepsi 450x300.jpg";
 import rbImage from "../../../assets/RBDrink 450x300.jpg";
 import pizzaImage from "../../../assets/Pizza 450x300.jpg";
+import { useEffect, useState } from "react";
+import { API_MENU } from "../../../util/Constants";
+import UseFetch from "../../../util/UseFetch";
+import axios from "axios";
 
 export default function MenuIndex() {
 
@@ -40,6 +44,23 @@ export default function MenuIndex() {
         }
     ]
 
+    const REST_API_BASE_URL = 'http://localhost:8080/menus'
+
+    const listMenus = () => axios.get(REST_API_BASE_URL + '/getAllMenus');
+
+    const [menus, setMenus] = useState([])
+
+    useEffect(() => {
+        listMenus()
+            .then(respone => {
+                setMenus(respone.data.data);
+                console.log(respone.data.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
+
     return (
         <>
             <div className="bg-dark py-5">
@@ -57,22 +78,22 @@ export default function MenuIndex() {
             <section className="py-5">
                 <div className="container px-4 px-lg-5 mt-5">
                     <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                        {dummyData.map((menu) => (
-                            <div className="col mb-5" key={menu.mnu_id}>
+                        {menus.map((menu) => (
+                            <div className="col mb-5" key={menu.idMenu}>
                                 <div className="card h-100">
                                     {/* Product image */}
                                     <img
                                         className="card-img-top"
-                                        src={menu.mnu_picture}
+                                        src={burgerImage}
                                         alt="..."
                                     />
                                     {/* Product details */}
                                     <div className="card-body p-4">
                                         <div className="text-center">
                                             {/* Product name */}
-                                            <h5 className="fw-bolder">{menu.mnu_name}</h5>
+                                            <h5 className="fw-bolder">{menu.name}</h5>
                                             {/* Product price */}
-                                            
+
                                         </div>
                                     </div>
                                     {/* Product actions */}
@@ -81,7 +102,7 @@ export default function MenuIndex() {
                                             <a className="btn btn-outline-dark mt-auto" href="#">
                                                 Buy
                                             </a>
-                                            <span className="mx-2">Rp. {menu.mnu_price}</span>
+                                            <span className="mx-2">Rp. {menu.price}</span>
                                         </div>
                                     </div>
                                 </div>
