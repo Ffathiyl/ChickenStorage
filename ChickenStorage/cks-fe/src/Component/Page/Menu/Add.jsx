@@ -26,7 +26,7 @@ export default function MenuAdd({ onChangePage }) {
         mnu_description: "",
         mnu_stock: "",
         mnu_price: "",
-        picture: "aaa",
+        picture: "",
         creaby: 1,
         creadate: "2024-11-12",
     });
@@ -132,7 +132,7 @@ export default function MenuAdd({ onChangePage }) {
                                 <Input
                                     type="text"
                                     forInput="mnu_description"
-                                    label="mnu_description"
+                                    label="Description"
                                     isRequired
                                     value={formDataRef.current.mnu_description}
                                     onChange={handleInputChange}
@@ -143,7 +143,7 @@ export default function MenuAdd({ onChangePage }) {
                                 <Input
                                     type="text"
                                     forInput="mnu_stock"
-                                    label="mnu_stock"
+                                    label="Stock"
                                     isRequired
                                     value={formDataRef.current.mnu_stock}
                                     onChange={handleInputChange}

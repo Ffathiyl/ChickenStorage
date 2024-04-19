@@ -9,6 +9,8 @@ import Menu from './Component/Page/Menu/Root'
 import MenuAdd from './Component/Page/Menu/Add'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.esm'
+import EditProd from './Component/Page/Menu/Edit'
+import EditMenu from './Component/Page/Menu/Edit'
 
 
 export default function App() {
@@ -26,6 +28,11 @@ export default function App() {
     {
       path: "/MenuAdd",
       element: <MenuAdd/>
+    }
+    ,
+    {
+      path: "/EditMenu/:id",
+      element: <EditMenu/>
     }
   ]);
 
