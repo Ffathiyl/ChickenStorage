@@ -133,7 +133,7 @@ export default function MenuIndex() {
           }));
         } else {
           SweetAlert("Success", "Order created successfully", "success");
-          navigate("/Menu");
+          navigate("/OrderOnProcess");
         }
       } catch (error) {
         console.error("Error occurred while sending order:", error);
