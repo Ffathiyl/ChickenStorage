@@ -17,9 +17,13 @@ const arrMenu = [
   },
   {
     head: "Order",
-    headkey: "order",
-    link: ROOT_LINK + "/Order",
-    sub: [],
+    headkey: 2,
+    link: "#",
+    sub: [
+      { title: "Create Order", link: ROOT_LINK + "/Order" },
+      { title: "Order on Process", link: ROOT_LINK + "/OrderOnProcess" },
+      { title: "History Order", link: ROOT_LINK + "/HistoryOrder" },
+    ],
   },
 ];
 
