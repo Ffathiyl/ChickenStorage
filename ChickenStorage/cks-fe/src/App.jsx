@@ -12,6 +12,8 @@ import "bootstrap/dist/js/bootstrap.esm";
 import EditProd from "./Component/Page/Menu/Edit";
 import EditMenu from "./Component/Page/Menu/Edit";
 import Order from "./Component/Page/Order/Root";
+import ShowOrder from "./Component/Page/Order/Show";
+import HistoryOrder from "./Component/Page/Order/History";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -34,6 +36,14 @@ export default function App() {
     {
       path: "/Order",
       element: <Order />,
+    },
+    {
+      path: "/OrderOnProcess",
+      element: <ShowOrder />,
+    },
+    {
+      path: "/HistoryOrder",
+      element: <HistoryOrder />,
     },
   ]);
 
