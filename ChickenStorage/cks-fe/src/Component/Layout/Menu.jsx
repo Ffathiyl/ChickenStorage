@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import logo from "../../assets/Los_Pollos_Hermanos_logo.png";
 import { ROOT_LINK } from "../../util/Constants";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.esm'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.esm";
 
 const arrMenu = [
   { head: "Dashboard", headkey: "dashboard", link: ROOT_LINK + "/", sub: [] },
   {
-    head: "Menu", headkey: 1, link: "#",
+    head: "Menu",
+    headkey: 1,
+    link: "#",
     sub: [
       { title: "Show Menu", link: ROOT_LINK + "/Menu" },
-      { title: "Add Menu", link: ROOT_LINK + "/MenuAdd" }
-    ]
+      { title: "Add Menu", link: ROOT_LINK + "/MenuAdd" },
+    ],
   },
   {
-    head: "Logout", headkey: "logout", link: ROOT_LINK + "/logout", sub: []
+    head: "Order",
+    headkey: "order",
+    link: ROOT_LINK + "/Order",
+    sub: [],
   },
 ];
 
 export default function Header() {
-
   const [isOpen, setIsOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
 
@@ -43,16 +47,36 @@ export default function Header() {
             className="p-3"
             style={{ height: "70px" }}
           />
-          <span className="ml-2" style={{ fontSize: "25px", fontFamily: "fantasy", color: "red" }}>Los Pollos Hermanos</span>
+          <span
+            className="ml-2"
+            style={{ fontSize: "25px", fontFamily: "fantasy", color: "red" }}
+          >
+            Chicken Storage
+          </span>
         </div>
-        <div className={`collapse navbar-collapse justify-content-end pe-4 ${isOpen ? 'show' : ''}`} id="navbarSupportedContent">
+        <div
+          className={`collapse navbar-collapse justify-content-end pe-4 ${
+            isOpen ? "show" : ""
+          }`}
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav">
             {arrMenu.map((menu) => (
-              <li className="nav-item mx-4" style={{ fontSize: "20px", fontFamily: "fantasy", color: "red" }} key={menu.headkey}>
+              <li
+                className="nav-item mx-4"
+                style={{
+                  fontSize: "20px",
+                  fontFamily: "fantasy",
+                  color: "red",
+                }}
+                key={menu.headkey}
+              >
                 {menu.sub.length > 0 ? (
                   <div className="dropdown">
                     <a
-                      className={`nav-link dropdown-toggle ${activeMenu === menu.head ? 'active' : ''}`}
+                      className={`nav-link dropdown-toggle ${
+                        activeMenu === menu.head ? "active" : ""
+                      }`}
                       href={menu.link}
                       role="button"
                       onClick={() => handleMenuClick(menu.head)}
@@ -63,17 +87,24 @@ export default function Header() {
                     >
                       {menu.head}
                     </a>
-                    <ul className="dropdown-menu" aria-labelledby={`dropdown-${menu.headkey}`}>
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby={`dropdown-${menu.headkey}`}
+                    >
                       {menu.sub.map((subMenu, index) => (
                         <li key={index}>
-                          <a className="dropdown-item" href={subMenu.link}>{subMenu.title}</a>
+                          <a className="dropdown-item" href={subMenu.link}>
+                            {subMenu.title}
+                          </a>
                         </li>
                       ))}
                     </ul>
                   </div>
                 ) : (
                   <a
-                    className={`nav-link ${activeMenu === menu.head ? 'active' : ''}`}
+                    className={`nav-link ${
+                      activeMenu === menu.head ? "active" : ""
+                    }`}
                     href={menu.link}
                     onClick={() => handleMenuClick(menu.head)}
                   >

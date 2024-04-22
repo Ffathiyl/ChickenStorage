@@ -13,7 +13,12 @@ export default function Header() {
             className="p-3"
             style={{ height: "70px" }}
           />
-          <span className="ml-2" style={{ fontSize: "25px", fontFamily: "fantasy", color: "red" }}>Los Pollos Hermanos</span>
+          <span
+            className="ml-2"
+            style={{ fontSize: "25px", fontFamily: "fantasy", color: "red" }}
+          >
+            Chicken Storage
+          </span>
         </div>
         <Menu /> {/* Masukkan komponen Menu di sini */}
       </div>

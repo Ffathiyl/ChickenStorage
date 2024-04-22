@@ -1,39 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import Header from './Component/Layout/Header'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Dashboard from './Component/Page/Dashboard/Root'
-import Container from './Component/Layout/Container'
-import Menu from './Component/Page/Menu/Root'
-import MenuAdd from './Component/Page/Menu/Add'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.esm'
-import EditProd from './Component/Page/Menu/Edit'
-import EditMenu from './Component/Page/Menu/Edit'
-
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import Header from "./Component/Layout/Header";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Dashboard from "./Component/Page/Dashboard/Root";
+import Container from "./Component/Layout/Container";
+import Menu from "./Component/Page/Menu/Root";
+import MenuAdd from "./Component/Page/Menu/Add";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.esm";
+import EditProd from "./Component/Page/Menu/Edit";
+import EditMenu from "./Component/Page/Menu/Edit";
+import Order from "./Component/Page/Order/Root";
 
 export default function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Dashboard />
-    }
-    ,
+      element: <Dashboard />,
+    },
     {
       path: "/Menu",
-      element: <Menu />
-    }
-    ,
+      element: <Menu />,
+    },
     {
       path: "/MenuAdd",
-      element: <MenuAdd/>
-    }
-    ,
+      element: <MenuAdd />,
+    },
     {
       path: "/EditMenu/:id",
-      element: <EditMenu/>
-    }
+      element: <EditMenu />,
+    },
+    {
+      path: "/Order",
+      element: <Order />,
+    },
   ]);
 
   return (
@@ -45,5 +46,5 @@ export default function App() {
         <RouterProvider router={router} />
       </Container>
     </>
-  )
+  );
 }
