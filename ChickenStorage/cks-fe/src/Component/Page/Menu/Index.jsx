@@ -51,7 +51,7 @@ export default function MenuIndex() {
     },
   ];
 
-  const listMenus = () => axios.get(API_MENU + "/getMenuActive");
+  const listMenus = () => axios.get(API_MENU + "/getAllMenus");
 
   const [menus, setMenus] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -138,56 +138,66 @@ export default function MenuIndex() {
           <section className="">
             <div className="container px-4 px-lg-5 mt-5">
               <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                {menus.map((menu) => (
-                  <div className="col mb-5" key={menu.idMenu}>
-                    <div className="card h-100 position-relative">
-                      {/* Edit button */}
-                      <Link
-                        className="btn btn-edit position-absolute top-0 end-0 mt-2 me-2"
-                        to={`/EditMenu/${menu.idMenu}`}
-                      >
-                        <i className="fa fa-edit"></i>
-                      </Link>
-                      {/* Delete button */}
-                      <button
-                        className="btn btn-delete position-absolute top-0 start-0 mt-2 ms-2"
-                        onClick={() => handleDelete(menu.idMenu)}
-                      >
-                        <i className="fa fa-trash"></i>
-                      </button>
-                      {/* Product image */}
-                      <img
-                        className="card-img-top"
-                        src={burgerImage}
-                        alt="..."
-                      />
-                      {/* Product details */}
-                      <div className="card-body px-4">
-                        <div className="text-center">
-                          {/* Product name */}
-                          <h5 className="fw-bolder">{menu.name}</h5>
+                {menus
+                  .filter((menu) => menu.status === 1)
+                  .map((menu) => (
+                    <div className="col mb-5" key={menu.idMenu}>
+                      <div className="card h-100 position-relative">
+                        {/* Edit button */}
+                        <Link
+                          className="btn btn-edit position-absolute top-0 end-0 mt-2 me-2"
+                          to={`/EditMenu/${menu.idMenu}`}
+                        >
+                          <i className="fa fa-edit"></i>
+                        </Link>
+                        {/* Delete button */}
+                        <button
+                          className="btn btn-delete position-absolute top-0 start-0 mt-2 ms-2"
+                          onClick={() => handleDelete(menu.idMenu)}
+                        >
+                          <i className="fa fa-trash"></i>
+                        </button>
+                        {/* Product image */}
+                        <img
+                          className="card-img-top"
+                          src={burgerImage}
+                          alt="..."
+                        />
+                        {/* Product details */}
+                        <div className="card-body px-4">
+                          <div className="text-center">
+                            {/* Product name */}
+                            <h5 className="fw-bolder">{menu.name}</h5>
+                          </div>
+                          <div className="text-center">
+                            {/* Product Description */}
+                            <h6 className="text-secondary">
+                              {menu.description}
+                            </h6>
+                          </div>
+                          <div className="text-center">
+                            {/* Product Stock */}
+                            <h6 className="text-secondary">
+                              Stock: {menu.stock}
+                            </h6>
+                          </div>
                         </div>
-                        <div className="text-center">
-                          {/* Product Description */}
-                          <h6 className="text-secondary">{menu.description}</h6>
-                        </div>
-                      </div>
-                      {/* Product actions */}
-                      <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div className="text-center">
-                          {/* Buy button */}
-                          {/* <a className="btn btn-outline-dark mt-auto" href="#">
+                        {/* Product actions */}
+                        <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                          <div className="text-center">
+                            {/* Buy button */}
+                            {/* <a className="btn btn-outline-dark mt-auto" href="#">
                             Buy
                           </a> */}
-                          {/* Product price */}
-                          <span className="mx-2">
-                            Rp {separator(menu.price)}
-                          </span>
+                            {/* Product price */}
+                            <span className="mx-2">
+                              Rp {separator(menu.price)}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </section>
