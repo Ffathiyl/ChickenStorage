@@ -25,7 +25,7 @@ export default function MenuAdd({ onChangePage }) {
     mnu_description: "",
     mnu_stock: "",
     mnu_price: "",
-    picture: "",
+    mnu_picture: "",
     creaby: 1,
     creadate: "2024-11-12",
   });
@@ -39,7 +39,7 @@ export default function MenuAdd({ onChangePage }) {
     mnu_stock: string().max(4, "Maximum Stock 999").required("Must Filled"),
     mnu_price: string().required("Must Filled"),
     mnu_description: string().required("harus dipilih"),
-    picture: string(),
+    mnu_picture: string(),
     creaby: string(),
     creadate: string(),
   });
@@ -59,6 +59,22 @@ export default function MenuAdd({ onChangePage }) {
 
   const handleAdd = async (e) => {
     e.preventDefault();
+
+    if (selectedFile) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const fileContent = e.target.result;
+        console.log("Konten File:", fileContent);
+
+        formDataRef.current.mnu_picture = fileContent;
+        console.log(JSON.stringify(formDataRef.current));
+      };
+
+      reader.readAsDataURL(selectedFile);
+    } else {
+      console.error("Tidak ada file yang dipilih.");
+    }
 
     const validationErrors = await validateAllInputs(
       formDataRef.current,
@@ -98,6 +114,29 @@ export default function MenuAdd({ onChangePage }) {
         .then(() => setIsLoading(false));
     } else {
       console.error("Validation error occurred:", validationErrors);
+    }
+  };
+
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleUpload = () => {
+    if (selectedFile) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const fileContent = e.target.result;
+        console.log("Konten File:", fileContent);
+
+        // Di sini Anda dapat melakukan apa pun dengan konten file, seperti mengirimnya ke backend
+      };
+
+      reader.readAsDataURL(selectedFile);
+    } else {
+      console.error("Tidak ada file yang dipilih.");
     }
   };
 
@@ -160,18 +199,18 @@ export default function MenuAdd({ onChangePage }) {
                   errorMessage={errors.mnu_price}
                 />
               </div>
-              {/* <div className="col-lg-4">
-                                <FileUpload
-                                    forInput="gambarProduk"
-                                    label="Gambar Produk (.pdf, .jpg, .png)"
-                                    formatFile=".pdf,.jpg,.png"
-                                    ref={fileGambarRef}
-                                    onChange={() =>
-                                        handleFileChange(fileGambarRef, "pdf,jpg,png")
-                                    }
-                                    errorMessage={errors.gambarProduk}
-                                />
-                            </div> */}
+              <div className="col-lg-4">
+                <FileUpload
+                  forInput="mnu_picture"
+                  label="Gambar Produk (.pdf, .jpg, .png)"
+                  formatFile=".pdf,.jpg,.png"
+                  ref={fileGambarRef}
+                  onChange={handleFileChange}
+                  errorMessage={errors.mnu_picture}
+                />
+                {/* <input type="file" onChange={handleFileChange} /> */}
+              </div>
+              {/* <button onClick={handleUpload}>Upload</button> */}
               {/* <div className="col-lg-12">
                                 <Input
                                     type="text"
